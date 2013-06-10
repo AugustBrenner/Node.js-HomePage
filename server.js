@@ -6,12 +6,17 @@ var url = require("url");
 
 
 // start function to export
-function start() {
+function start(route, handle) {
 
     // set up the http request/response procedure
     function onRequest(request, response) {
         var pathname = url.parse(request.url).pathname;
         console.log("Request for " + pathname + " received.");
+
+        // route pathname
+        route(handle, pathname);
+
+        // formulate the response
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write("Hello World");
         response.end();

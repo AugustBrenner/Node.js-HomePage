@@ -1,7 +1,15 @@
 // node.js index file
 
-// require server module
+// load modules
 var server = require("./server");
+var router = router = require("./router");
+var requestHandlers = require("./requestHandlers");
+
+// set up request handlers
+var handle = {};
+handle["/"] = requestHandlers.start;
+handle["/start"] = requestHandlers.start;
+handle["/upload"] = requestHandlers.start;
 
 // start server
-server.start();
+server.start(router.route, handle);

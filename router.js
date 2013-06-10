@@ -1,7 +1,16 @@
-// node.js index file
+// node.js router module
 
-// require server module
-var server = require("./server");
+// router function
+function route(handle, pathname) {
 
-// start server
-server.start();
+    console.log("About to route a request for " + pathname);
+
+    if(typeof handle[pathname] === 'function') {
+        handle[pathname]();
+    } else {
+        console.log("No request handler found for " + pathname);
+    }
+}
+
+// export the rout function
+exports.route = route;
