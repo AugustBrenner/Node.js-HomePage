@@ -10,22 +10,9 @@ function start(route, handle) {
 
     // set up the http request/response procedure
     function onRequest(request, response) {
-        var postData = "";
         var pathname = url.parse(request.url).pathname;
         console.log("Request for " + pathname + " received.");
-
-        request.setEncoding("utf8");
-
-        // POST data listener
-        request.addListener("data", function(postDataChunk){
-            postData += postDataChunk;
-            console.log("Recieved POST data chunk '"+ postDataChunk + "'.");
-        });
-
-        // end of POST data listener
-        request.addListener("end", function(){
-            route(handle, pathname, response, postData);
-        });
+        route(handle, pathname, response, request);
     }
 
     // create the server
