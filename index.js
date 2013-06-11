@@ -9,7 +9,7 @@ var requestHandlers = require("./requestHandlers");
 var handle = {};
 handle["/"] = requestHandlers.start;
 handle["/start"] = requestHandlers.start;
-handle["/upload"] = requestHandlers.start;
+handle["/upload"] = requestHandlers.upload;
 
 // start server
 server.start(router.route, handle);
